@@ -1,5 +1,6 @@
 
 //ahora generaremos la matriz con una funcion
+let divTablero= document.querySelector("#tablero");
 let manzana=[
 
 ]
@@ -75,6 +76,18 @@ function aplicarManzana(){
 aplicarManzana();
 console.log(matriu);
 
+//pintar matriz
+function pintartablero(){
+    divTablero="";
+    for(i=0;i<matriu[fila].length;i++){
+        divTablero.innerHTML +="<div class'fila'>";
+        for(j=0;j<matriu[columnes].length;j++){
+            divTablero.innerHTML += "<div class'box'>BOX</div>";
+        }
+        divTablero.innerHTML +="</div>";
+    }
+}
+pintartablero()
 
 
 
