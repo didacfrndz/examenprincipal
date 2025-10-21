@@ -1,4 +1,3 @@
-
 //ahora generaremos la matriz con una funcion
 let divTablero= document.querySelector("#tablero");
 let manzana=[
@@ -55,12 +54,15 @@ console.log(matriu);
 //ahora lo haremos con una funcion
 
 function generarManzana(){
-    
-    manzana.push( {
-            f:Math.floor(Math.random() * 11),
-            c:Math.floor(Math.random() * 11)
-        })
-    
+    const filas = matriu.length;
+    const columnas = matriu[0].length;
+    let f, c;
+    // generar hasta encontrar una celda válida (vacía = 1)
+    do {
+        f = Math.floor(Math.random() * filas);
+        c = Math.floor(Math.random() * columnas);
+    } while (matriu[f][c] !== 1);
+    manzana.push({ f, c });
 }
 generarManzana();
 console.log("Manzana",manzana);
@@ -77,18 +79,26 @@ aplicarManzana();
 console.log(matriu);
 
 //pintar matriz
-function pintartablero(){
-    divTablero="";
-    for(i=0;i<matriu[fila].length;i++){
-        divTablero.innerHTML +="<div class'fila'>";
-        for(j=0;j<matriu[columnes].length;j++){
-            divTablero.innerHTML += "<div class'box'>BOX</div>";
+function pintartablero() {
+    divTablero.innerHTML = "";
+    let html = "";
+    for (let f = 0; f < matriu.length; f++) {
+        html += '<div class="fila-matriz">';
+        for (let c = 0; c < matriu[f].length; c++) {
+            if (matriu[f][c] === 0) {
+                html += '<div class="celda serpiente"></div>';
+            } else if (matriu[f][c] === 2) {
+                html += '<div class="celda manzana"></div>';
+            } else {
+                html += '<div class="celda vacia"></div>';
+            }
         }
-        divTablero.innerHTML +="</div>";
+        html += '</div>';
     }
+    divTablero.innerHTML = html;
 }
-pintartablero()
-
+pintartablero();
+console.log("fin del script");
 
 
 
